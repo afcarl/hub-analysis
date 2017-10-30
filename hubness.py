@@ -29,12 +29,10 @@ def cal_skewness(dist_mat, k, metric):
     n_query, n_target = dist_mat.shape
     kbest_idxs = np.zeros((k, n_query), dtype=np.float32)
 
-    # np.fill_diagonal(dist_mat, self_val)
     dist_mat[~np.isfinite(dist_mat)] = self_val
 
     for i in range(n_query):
         dists = dist_mat[i, :]
-        # dists[i] = self_val
         dists[~np.isfinite(dists)] = self_val
 
         # randomize equal values for avoiding high hubness (see original code)
